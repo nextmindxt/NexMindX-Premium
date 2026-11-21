@@ -1,0 +1,409 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090711">
+  <title>NexMindX — Premium Education</title>
+  <style>
+    :root {
+      --bg: #090711;
+      --panel: #141021;
+      --border: #302542;
+      --purple: #a56aff;
+      --text: #f5f0ff;
+      --muted: #a49ab7;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(ellipse at 80% 0%, #38145d80, transparent 45%),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 22px 7%;
+      border-bottom: 1px solid var(--border);
+      background: #090711cc;
+      backdrop-filter: blur(16px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -.5px;
+    }
+
+    .brand img {
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+    }
+
+    .brand span { color: var(--purple); }
+
+    .top-link {
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 10px 18px;
+      font-size: 13px;
+    }
+
+    main { max-width: 1160px; margin: auto; padding: 0 24px; }
+
+    .hero {
+      text-align: center;
+      padding: 105px 0 85px;
+    }
+
+    .eyebrow {
+      color: #c69bff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(44px, 7vw, 84px);
+      line-height: 1.07;
+      letter-spacing: -3px;
+      margin: 22px 0;
+    }
+
+    .gradient {
+      background: linear-gradient(100deg, #fff, #b984ff, #7942e9);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 640px;
+      margin: 0 auto 32px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .button {
+      display: inline-block;
+      background: linear-gradient(120deg, #8b4de7, #b278ff);
+      color: white;
+      padding: 15px 27px;
+      border-radius: 12px;
+      font-weight: 700;
+      box-shadow: 0 10px 40px #8b4de744;
+    }
+
+    .button:hover { filter: brightness(1.13); }
+
+    .section-head {
+      margin: 40px 0 25px;
+    }
+
+    h2 {
+      font-size: clamp(28px, 4vw, 39px);
+      letter-spacing: -1px;
+      margin: 10px 0;
+    }
+
+    .section-head p { color: var(--muted); }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: 300px minmax(0, 1fr);
+      gap: 20px;
+      margin-bottom: 85px;
+    }
+
+    .sidebar, .lesson, .feature {
+      background: linear-gradient(145deg, #191329, #100d19);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+    }
+
+    .sidebar { padding: 24px; }
+
+    .sidebar h3 {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--muted);
+      margin-top: 0;
+    }
+
+    .module {
+      display: block;
+      padding: 15px;
+      margin: 9px 0;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      color: #cfc5df;
+      font-size: 14px;
+    }
+
+    .module.active {
+      background: #8b4de71e;
+      border-color: #8b4de75e;
+      color: white;
+    }
+
+    .module:hover { background: #ffffff0a; }
+
+    .module small {
+      display: block;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    .lesson { padding: 36px; min-height: 470px; }
+
+    .lesson-label {
+      font-size: 12px;
+      color: var(--purple);
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    .lesson h3 {
+      font-size: 32px;
+      line-height: 1.2;
+      margin: 18px 0;
+    }
+
+    .lesson p { color: var(--muted); }
+
+    .progress-track {
+      background: #332747;
+      height: 7px;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 22px 0;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #8b4de7, #c292ff);
+    }
+
+    .notice {
+      background: #a56aff10;
+      border: 1px solid #a56aff40;
+      border-radius: 12px;
+      padding: 18px;
+      margin-top: 30px;
+      color: #d7c5ed;
+      font-size: 14px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-bottom: 90px;
+    }
+
+    .feature { padding: 28px; }
+    .feature .number { color: var(--purple); font-size: 13px; }
+    .feature h3 { margin-bottom: 8px; }
+    .feature p { color: var(--muted); font-size: 14px; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 35px 20px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 760px) {
+      header { padding: 16px 20px; }
+      .top-link { font-size: 11px; padding: 8px 11px; }
+      .hero { padding: 75px 0 55px; }
+      h1 { letter-spacing: -2px; }
+      .dashboard { grid-template-columns: 1fr; }
+      .features { grid-template-columns: 1fr; }
+      .lesson { padding: 25px; min-height: 350px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="brand" href="https://nextmindxt.github.io/NexMindX/">
+    <img src="https://nextmindxt.github.io/NexMindX/logo.png" alt="NexMindX">
+    NexMind<span>X</span>
+  </a>
+  <a class="top-link" href="https://t.me/NexMindplatformBot">
+    Telegram ↗
+  </a>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="eyebrow">NEXMINDX / PREMIUM EDUCATION</div>
+    <h1>Знания нового<br><span class="gradient">уровня.</span></h1>
+    <p>
+      Продвинутая образовательная программа NexMindX.
+      Практические навыки, эффективная работа с заказами
+      и современные инструменты искусственного интеллекта.
+    </p>
+    <a class="button" href="#course">Изучить программу ↗</a>
+  </section>
+
+  <section id="course">
+    <div class="section-head">
+      <div class="eyebrow">01 / EDUCATION DASHBOARD</div>
+      <h2>Твоя программа обучения</h2>
+      <p>Шесть модулей для последовательного развития навыков.</p>
+    </div>
+
+    <div class="dashboard">
+      <aside class="sidebar">
+        <h3>Программа курса</h3>
+        <div id="modules"></div>
+      </aside>
+
+      <article class="lesson">
+        <div class="lesson-label" id="lesson-label">МОДУЛЬ 01 / 06</div>
+        <h3 id="lesson-title">Основы NexMindX</h3>
+        <p id="lesson-description"></p>
+
+        <div style="margin-top:35px;color:#a49ab7;font-size:13px">
+          ПРОГРЕСС ОБУЧЕНИЯ — <span id="progress-value">0%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+
+        <div class="notice">
+          💎 Премиальные уроки будут доступны здесь после
+          подключения защищённой авторизации и проверки покупки.
+          Сейчас это предварительная версия интерфейса курса.
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="eyebrow">02 / PREMIUM EXPERIENCE</div>
+      <h2>Больше, чем просто теория</h2>
+    </div>
+
+    <div class="features">
+      <div class="feature">
+        <div class="number">01 / PRACTICE</div>
+        <h3>Практические задания</h3>
+        <p>Разбор рабочих ситуаций и пошаговые инструкции.</p>
+      </div>
+
+      <div class="feature">
+        <div class="number">02 / AI POWER</div>
+        <h3>Инструменты ИИ</h3>
+        <p>Промпты, проверка результатов и автоматизация рутины.</p>
+      </div>
+
+      <div class="feature">
+        <div class="number">03 / SYSTEM</div>
+        <h3>Система работы</h3>
+        <p>Шаблоны, чек-листы и организация выполнения заказов.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  © 2026 NexMindX Premium Education.
+  Все права защищены.
+</footer>
+
+<script>
+  const modules = [
+    {
+      title: "Основы NexMindX",
+      subtitle: "Знакомство с платформой",
+      description: "Подробное изучение системы NexMindX, интерфейса Telegram-бота и основных этапов работы."
+    },
+    {
+      title: "Поиск заказов",
+      subtitle: "Выбор подходящих заданий",
+      description: "Как оценивать требования, сроки, сложность и собственные возможности перед принятием заказа."
+    },
+    {
+      title: "Выполнение заданий",
+      subtitle: "Качество и результат",
+      description: "Пошаговая работа над заданиями, подготовка файлов, самопроверка и сдача результата."
+    },
+    {
+      title: "Клиенты и выплаты",
+      subtitle: "Коммуникация и финансы",
+      description: "Проверка работ, обработка замечаний, правила взаимодействия и получение вознаграждения."
+    },
+    {
+      title: "ИИ для заработка",
+      subtitle: "Ускорение рабочих процессов",
+      description: "Практическое применение ИИ для подготовки материалов, поиска идей, повышения качества и сокращения рутинной работы."
+    },
+    {
+      title: "Продвинутые стратегии",
+      subtitle: "Эффективность и развитие",
+      description: "Организация времени, шаблоны, чек-листы и улучшение навыков работы с заказами."
+    }
+  ];
+
+  const menu = document.getElementById("modules");
+
+  function showModule(index) {
+    const module = modules[index];
+
+    document.getElementById("lesson-label").textContent =
+      `МОДУЛЬ ${String(index + 1).padStart(2, "0")} / 06`;
+
+    document.getElementById("lesson-title").textContent = module.title;
+    document.getElementById("lesson-description").textContent =
+      module.description;
+
+    document.querySelectorAll(".module").forEach((element, i) => {
+      element.classList.toggle("active", i === index);
+    });
+  }
+
+  modules.forEach((module, index) => {
+    const button = document.createElement("a");
+    button.href = "#course";
+    button.className = "module";
+    button.innerHTML =
+      `${String(index + 1).padStart(2, "0")} — ${module.title}
+       <small>${module.subtitle}</small>`;
+    button.addEventListener("click", () => showModule(index));
+    menu.appendChild(button);
+  });
+
+  showModule(0);
+</script>
+
+</body>
+</html>
